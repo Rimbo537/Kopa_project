@@ -1,6 +1,12 @@
+import 'package:copa_example/core/bloc/widget_state_bloc.dart';
 import 'package:copa_example/theme/app_colors.dart';
+import 'package:copa_example/ui/screens/data_form_screen.dart';
+import 'package:copa_example/ui/screens/login_screen.dart';
+
+import 'package:copa_example/ui/widgets/custom_text_form_field.dart';
+import 'package:copa_example/view/main/bottom_notifier.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class VerificationNumberWidget extends StatefulWidget {
   const VerificationNumberWidget({Key? key}) : super(key: key);
@@ -11,50 +17,60 @@ class VerificationNumberWidget extends StatefulWidget {
 }
 
 class _VerificationNumberWidgetState extends State<VerificationNumberWidget> {
+  final _phoneController = TextEditingController(text: '+380');
+
   @override
   Widget build(BuildContext context) {
-    const textFieldDecoration = InputDecoration(
-      contentPadding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
-      //errorText: 'Номер введено невірно',
-      
-      enabledBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.all(Radius.circular(30)),
-          borderSide: BorderSide(color: Colors.white, width: 1.0)),
-      focusedBorder: OutlineInputBorder(
-        borderRadius: BorderRadius.all(Radius.circular(30)),
-        borderSide: BorderSide(
-            color: AppColors.appMainColor, width: 1.0),
-      ),
-    );
+    final _verificationNumberWidgetKey = GlobalKey<FormState>();
+     WidgetBloc _bloc = BlocProvider.of<WidgetBloc>(context);
     return Container(
-      child: Column(
-        children: [
-          SizedBox(
-            width: 283,
-            height: 34,
-            child: TextField(
-              style: TextStyle(color: Colors.white),
-              decoration: textFieldDecoration,
-              keyboardType: TextInputType.phone,
-              inputFormatters: [
-                FilteringTextInputFormatter.digitsOnly,
-              ],
-            ),
-          ),
-          SizedBox(height: 41.0),
-          ElevatedButton(
-            style: ElevatedButton.styleFrom(
-              minimumSize: Size(283, 34),
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.all(Radius.circular(30)),
-                side:
-                    BorderSide(color: AppColors.appMainColor),
+      
+      child: Form(
+        key: _verificationNumberWidgetKey,
+        child: Column(
+          children: [
+            Padding(
+              padding: const EdgeInsets.only(left: 65, right: 65),
+              child: CustomTextFormField(
+                controller: _phoneController,
+                labelText: 'Номер телефону',
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return "Будь ласка, введіть номер";
+                  }
+                  return null;
+                },
               ),
             ),
-            onPressed: () {},
-            child: Text('Верифікувати'),
-          ),
-        ],
+            // SizedBox(height: 41.0),
+
+            Padding(
+              padding: const EdgeInsets.only(top: 20.0),
+              child: ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                  minimumSize: Size(283, 48),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.all(Radius.circular(30)),
+                    side: BorderSide(color: AppColors.appMainColor),
+                  ),
+                ),
+                onPressed: () {
+                  _bloc.add(VerificationNumberEvent());
+                  // if (_verificationNumberWidgetKey.currentState!.validate()) {
+                  //   Navigator.pushReplacement(
+                  //       context,
+                  //       MaterialPageRoute(
+                  //           builder: (context) => const DataFormScreen()));
+                  // }
+                },
+                child: Text(
+                  'Верифікувати',
+                  style: TextStyle(fontSize: 16),
+                ),
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
