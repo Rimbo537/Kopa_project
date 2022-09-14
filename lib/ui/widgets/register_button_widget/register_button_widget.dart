@@ -3,15 +3,16 @@ import 'package:flutter/material.dart';
 class RegisterButtonWidget extends StatelessWidget {
   final String imageButton;
   final Color colorButton;
+  final routePath;
  
 
    const RegisterButtonWidget(
-      {Key? key,required this.imageButton, required this.colorButton})
+      {Key? key,required this.imageButton, required this.colorButton, this.routePath})
       : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    var condition;
+
     return ElevatedButton(
       style: ElevatedButton.styleFrom(
         fixedSize: const Size(65.0, 65.0),
@@ -34,7 +35,13 @@ class RegisterButtonWidget extends StatelessWidget {
           ],
         ),
       ),
-      onPressed: () => {},
+      onPressed: () => Navigator.of(context).pushNamed(routePath),
     );
+    
   }
+  
 }
+
+// routePath(route) {
+//   Navigator.of(context).pushNamed(route);
+// }

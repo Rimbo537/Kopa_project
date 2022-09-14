@@ -1,6 +1,8 @@
 import 'package:copa_example/resources/app_images.dart';
+
 import 'package:copa_example/theme/app_colors.dart';
-import 'package:copa_example/ui/widgets/register_button_widget.dart';
+
+import 'package:copa_example/ui/widgets/register_button_widget/register_button_widget.dart';
 import 'package:flutter/material.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -14,7 +16,7 @@ class _LoginScreenState extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.black,
+      backgroundColor:AppColors.backgroudColor,
       body: Column(
         children: [
           const SizedBox(height: 104),
@@ -51,6 +53,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   child: RegisterButtonWidget(
                     imageButton: AppImages.phoneImg,
                     colorButton: AppColors.buttonPhoneColor,
+                    routePath: 'verification_number_screen',
                   ),
                 ),
                 Expanded(

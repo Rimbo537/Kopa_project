@@ -4,4 +4,5 @@ class AppImages {
   static const String googleImg = 'assets/google.png';
   static const String facebookImg = 'assets/facebook.png';
   static const String phoneImg = 'assets/phone.png';
+  static const String iconSneaker = 'assets/icon_sneaker.png';
 }
