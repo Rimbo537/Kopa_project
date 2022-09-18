@@ -10,4 +10,6 @@ abstract class AppColors {
   static const Color appMainColor = Color(0xFF0CCDE6);
   static const Color bottomNavBarButtonColor = Color(0xFFA1A1A1);
   static const Color bottomNavBarColor = Color(0xFF505051);
+  static const Color cardColor = Color(0xFF343434);
+  static const Color priceColor = Color(0xFFFFD600);
 }

@@ -23,11 +23,11 @@ class _VerificationNumberScreenState extends State<VerificationNumberScreen> {
       create: (context) => WidgetBloc(),
       child: Scaffold(
         backgroundColor: AppColors.backgroudColor,
-        body: ListView(
+        body: Column(
           children: [
             // const SizedBox(height: 104),
             Padding(
-              padding: const EdgeInsets.only(top: 100.0),
+              padding: const EdgeInsets.only(top: 90.0),
               child: Container(
                 child: Image.asset(
                   AppImages.sneakerImg,

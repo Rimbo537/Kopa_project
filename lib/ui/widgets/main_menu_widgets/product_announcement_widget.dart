@@ -15,7 +15,10 @@ class _ProductAnnouncementWidgetState extends State<ProductAnnouncementWidget> {
   Widget build(BuildContext context) {
     return Center(
         child: Container(
-      child: Text('Product Announcement Widget'),
+      child: Text(
+        'Product Announcement Widget',
+        style: TextStyle(color: Colors.white),
+      ),
     ));
   }
 }

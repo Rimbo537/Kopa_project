@@ -16,7 +16,10 @@ class _FavoriteAnnouncementWidgetState
   Widget build(BuildContext context) {
     return Center(
         child: Container(
-      child: Text('Favorite Announcement Widget'),
+      child: Text(
+        'Favorite Announcement Widget',
+        style: TextStyle(color: Colors.white),
+      ),
     ));
   }
 }

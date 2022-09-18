@@ -6,21 +6,23 @@ class CustomTextFormField extends StatelessWidget {
   final String? labelText;
   final String? Function(String?)? validator;
   final controller;
+  final keyboardType;
 
   const CustomTextFormField(
       {Key? key,
       this.labelText,
       this.validator,
       this.onChanged,
-      this.controller})
+      this.controller,
+      this.keyboardType})
       : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Padding(
-     padding: const EdgeInsets.only(left: 65, right: 65),
+      padding: const EdgeInsets.only(left: 30, right: 30),
       child: TextFormField(
-       
+        keyboardType: keyboardType,
         controller: controller,
         validator: validator,
         autovalidateMode: AutovalidateMode.disabled,
