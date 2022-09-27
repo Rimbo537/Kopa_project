@@ -1,9 +1,9 @@
 import 'package:copa_example/router/route_paths.dart';
-import 'package:copa_example/ui/screens/data_form_screen/data_form_screen.dart';
-import 'package:copa_example/ui/screens/login_screen/login_screen.dart';
-import 'package:copa_example/ui/screens/main_menu_screen/main_menu_screen.dart';
-import 'package:copa_example/ui/screens/splash_screen/splash_screen.dart';
-import 'package:copa_example/ui/screens/verification_number_screen/verification_number_screen.dart';
+import 'package:copa_example/ui/screens/data_form/data_form_screen.dart';
+import 'package:copa_example/ui/screens/login/login_screen.dart';
+import 'package:copa_example/ui/screens/main_menu/main_menu_screen.dart';
+import 'package:copa_example/ui/screens/splash/splash_screen.dart';
+import 'package:copa_example/ui/screens/verification_number/verification_number_screen.dart';
 import 'package:get/get_navigation/src/routes/get_route.dart';
 
 class AppPages {
@@ -11,23 +11,23 @@ class AppPages {
   static final routeswer = [
     GetPage(
       name: rootRoute,
-      page: () => SplashScreen(),
+      page: () => const SplashScreen(),
     ),
     GetPage(
       name: loginScreenRoute,
-      page: () => LoginScreen(),
+      page: () => const LoginScreen(),
     ),
     GetPage(
       name: verificationNumberScreenRoute,
-      page: () => VerificationNumberScreen(),
+      page: () => const VerificationNumberScreen(),
     ),
     GetPage(
       name: dataFormScreen,
-      page: () => DataFormScreen(),
+      page: () => const DataFormScreen(),
     ),
      GetPage(
       name: mainMenuScreen,
-      page: () => MainMenuScreen(),
+      page: () => const MainMenuScreen(),
     ),
 
   ];
