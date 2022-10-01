@@ -92,6 +92,5 @@ class PhoneAuthBloc extends Bloc<PhoneAuthEvent, PhoneAuthState> {
   }
 }
 
-if(auth. ) {}
 
 }
