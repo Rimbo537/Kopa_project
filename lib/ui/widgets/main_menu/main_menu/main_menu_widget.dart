@@ -16,9 +16,6 @@ class MainMenuWidget extends StatefulWidget {
 }
 
 class _MainMenuWidgetState extends State<MainMenuWidget> {
-  List<String> _nameSneakers = ['Sneaker 1', 'Sneaker 2', 'Sneaker 3'];
-  String? _selectedSneaker;
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -27,7 +24,6 @@ class _MainMenuWidgetState extends State<MainMenuWidget> {
         elevation: 0,
         backgroundColor: Colors.transparent,
         leading: const FilterWidget(),
-       
       ),
       body: const CardWidget(),
     );

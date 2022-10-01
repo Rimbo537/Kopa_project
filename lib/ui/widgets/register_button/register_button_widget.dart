@@ -1,6 +1,7 @@
 import 'package:copa_example/ui/screens/verification_number/verification_number_screen.dart';
 import 'package:copa_example/ui/widgets/verification_number/verification_number_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class RegisterButtonWidget extends StatelessWidget {
   final String imageButton;
@@ -38,8 +39,8 @@ class RegisterButtonWidget extends StatelessWidget {
           ],
         ),
       ),
-      onPressed: () => 
-      Navigator.of(context).pushNamed(routePath),
+      onPressed: () => Get.toNamed(routePath)
+      // Navigator.of(context).pushNamed(routePath)
     );
   }
 }
@@ -47,3 +48,9 @@ class RegisterButtonWidget extends StatelessWidget {
 // routePath(route) {
 //   Navigator.of(context).pushNamed(route);
 // }
+// Navigator.pushReplacement(context, MaterialPageRoute(builder: context => routePath),),
+
+// Navigator.push(
+//     context,
+//     MaterialPageRoute(builder: (context) =>  routePath),
+//   ),

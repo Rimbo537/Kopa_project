@@ -9,10 +9,11 @@ part 'phone_auth_event.dart';
 part 'phone_auth_state.dart';
 
 class PhoneAuthBloc extends Bloc<PhoneAuthEvent, PhoneAuthState> {
-  final PhoneAuthRepository phoneAuthRepository;
+  final PhoneAuthRepository phoneAuthRepository = PhoneAuthRepository();
   final auth = FirebaseAuth.instance;
+ 
 
-  PhoneAuthBloc({required this.phoneAuthRepository})
+  PhoneAuthBloc()
       : super(PhoneAuthInitial()) {
     // When user clicks on send otp button then this event will be fired
     on<SendOtpToPhoneEvent>(_onSendOtp);
@@ -90,5 +91,7 @@ class PhoneAuthBloc extends Bloc<PhoneAuthEvent, PhoneAuthState> {
     emit(PhoneAuthError(error: e.toString()));
   }
 }
+
+if(auth. ) {}
 
 }

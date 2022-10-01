@@ -7,15 +7,17 @@ class CustomTextFormField extends StatelessWidget {
   final String? Function(String?)? validator;
   final controller;
   final keyboardType;
+  final prefixIcon;
 
-  const CustomTextFormField(
-      {Key? key,
-      this.labelText,
-      this.validator,
-      this.onChanged,
-      this.controller,
-      this.keyboardType})
-      : super(key: key);
+  const CustomTextFormField({
+    Key? key,
+    this.labelText,
+    this.validator,
+    this.onChanged,
+    this.controller,
+    this.keyboardType,
+    this.prefixIcon,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -30,6 +32,7 @@ class CustomTextFormField extends StatelessWidget {
         onChanged: onChanged,
         cursorColor: AppColors.white,
         decoration: InputDecoration(
+          prefixIcon: prefixIcon,
           contentPadding: EdgeInsets.fromLTRB(10, 0, 10, 0),
           border: const OutlineInputBorder(),
           enabledBorder: const OutlineInputBorder(

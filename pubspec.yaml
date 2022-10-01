@@ -49,6 +49,7 @@ dependencies:
 
   equatable: ^2.0.5
   country_code_picker: ^2.0.2
+  fl_country_code_picker: ^0.0.3+1
 
 
 dev_dependencies:

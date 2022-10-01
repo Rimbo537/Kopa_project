@@ -25,25 +25,23 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
-      title: 'Copa Example',
-    
-      home: RepositoryProvider(
-        create: (context) => PhoneAuthRepository(),
-        child: BlocProvider(
-          create: (context) => PhoneAuthBloc(
-            phoneAuthRepository:
-                RepositoryProvider.of<PhoneAuthRepository>(context),
-          ),
-          child: const SplashScreen(),
-        ),
-      ),
-      // VerificationNumberScreen
-      // MainMenuScreen
-      // DataFormScreen
-      // SplashScreen
-      initialRoute: AppPages.INITIAL,
-      getPages: AppPages.routeswer,
+        title: 'Copa Example',
+        home:  SplashScreen(),
 
-    );
+        // VerificationNumberScreen
+        // MainMenuScreen
+        // DataFormScreen
+        // SplashScreen
+        initialRoute: AppPages.INITIAL,
+        getPages: AppPages.routeswer);
   }
 }
+
+// RepositoryProvider(
+//         create: (context) => PhoneAuthRepository(),
+//         child: BlocProvider(
+//           create: (context) => PhoneAuthBloc(
+//             phoneAuthRepository:
+//                 RepositoryProvider.of<PhoneAuthRepository>(context),
+//           ),
+//           child:

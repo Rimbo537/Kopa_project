@@ -1,7 +1,10 @@
 import 'dart:async';
+import 'package:copa_example/core/data/providers/base_provider.dart';
 import 'package:copa_example/resources/app_images.dart';
 import 'package:copa_example/theme/app_colors.dart';
+import 'package:copa_example/ui/screens/splash/splash_provider.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({Key? key}) : super(key: key);
@@ -33,11 +36,19 @@ class _SplashScreenState extends State<SplashScreen> {
     Timer(Duration(seconds: 1), () {
       Navigator.of(context).pushReplacementNamed('/login_screen');
     });
+    // WidgetsBinding.instance.addPostFrameCallback((_) {
+    //   context.read<SplashProvider>().init(context);
+    // });
   }
 
-  @override
-  Widget build(BuildContext context) {
-    return Container(
+
+
+@override
+Widget build(BuildContext context) {
+  return Provider<SplashProvider>(
+    create:(_) => SplashProvider(),
+    builder: (context, child) {
+      return Container(
       color: AppColors.backgroudColor,
       child: Image.asset(
         AppImages.sneakerImg,
@@ -45,5 +56,9 @@ class _SplashScreenState extends State<SplashScreen> {
       width: 373,
       height: 436,
     );
-  }
+    },
+
+    
+  );
+}
 }

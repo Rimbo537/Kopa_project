@@ -1,3 +1,4 @@
+import 'package:copa_example/core/bloc/phone_auth/phone_auth_bloc.dart';
 import 'package:copa_example/core/data/services/base_repository.dart';
 import 'package:copa_example/src/domain/models/user_model.dart';
 

@@ -1,12 +1,13 @@
 import 'package:copa_example/core/bloc/phone_auth/phone_auth_bloc.dart';
 import 'package:copa_example/core/bloc/widget_state_bloc.dart';
+import 'package:copa_example/data/repositories/auth/auth_repository_impl.dart';
 import 'package:copa_example/theme/app_colors.dart';
 import 'package:copa_example/ui/widgets/custom_text_form_feild/custom_text_form_field.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class ConfirmNumberWidget extends StatelessWidget {
-   ConfirmNumberWidget(
+  ConfirmNumberWidget(
       {Key? key, required this.codeController, required this.verificationId})
       : super(key: key);
 
@@ -67,7 +68,8 @@ class ConfirmNumberWidget extends StatelessWidget {
       ),
     );
   }
-    void _verifyOtp({required BuildContext context}) {
+
+  void _verifyOtp({required BuildContext context}) {
     context.read<PhoneAuthBloc>().add(VerifySentOtpEvent(
         otpCode: codeController.text, verificationId: verificationId));
     codeController.clear();

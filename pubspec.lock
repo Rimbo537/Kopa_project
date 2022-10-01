@@ -141,6 +141,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.7.2"
+  fl_country_code_picker:
+    dependency: "direct main"
+    description:
+      name: fl_country_code_picker
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.0.3+1"
   flutter:
     dependency: "direct main"
     description: flutter
@@ -289,6 +296,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "6.0.3"
+  scrollable_positioned_list:
+    dependency: transitive
+    description:
+      name: scrollable_positioned_list
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.3.4"
   sky_engine:
     dependency: transitive
     description: flutter

@@ -2,15 +2,17 @@ import 'package:copa_example/core/bloc/phone_auth/phone_auth_bloc.dart';
 import 'package:copa_example/core/bloc/widget_state_bloc.dart';
 import 'package:copa_example/core/data/services/firebase_auth/auth_phone.dart';
 import 'package:copa_example/theme/app_colors.dart';
+import 'package:copa_example/ui/screens/verification_number/verification_number_screen.dart';
 import 'package:copa_example/ui/widgets/custom_text_form_feild/custom_text_form_field.dart';
+import 'package:country_code_picker/country_code.dart';
+import 'package:country_code_picker/country_code_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class VerificationNumberWidget extends StatefulWidget {
-   const VerificationNumberWidget(
-      {Key? key,  required this.phoneNumberController})
+  VerificationNumberWidget({Key? key, required this.phoneNumberController})
       : super(key: key);
-  final TextEditingController phoneNumberController;
+  TextEditingController phoneNumberController;
 
   @override
   State<VerificationNumberWidget> createState() =>
@@ -18,20 +20,35 @@ class VerificationNumberWidget extends StatefulWidget {
 }
 
 class _VerificationNumberWidgetState extends State<VerificationNumberWidget> {
+  CountryCode _countryCode = CountryCode(code: 'UA', dialCode: '+380');
   @override
   Widget build(BuildContext context) {
     final GlobalKey<FormState> _phoneNumberFormKey = GlobalKey();
-  
+
     return Form(
       key: _phoneNumberFormKey,
       child: Container(
         child: Column(
           children: [
             CustomTextFormField(
+              prefixIcon: CountryCodePicker(
+                textStyle: TextStyle(color: Colors.white),
+                onChanged: (CountryCode countryCode) {
+                  setState(
+                    () {
+                      _countryCode = countryCode;
+                    },
+                  );
+                },
+                initialSelection: 'UA',
+                showCountryOnly: false,
+                showOnlyCountryWhenClosed: false,
+                alignLeft: false,
+              ),
               controller: widget.phoneNumberController,
               labelText: 'Номер телефону',
               validator: (value) {
-                if (value!.length != 10 || value.isEmpty) {
+                if (value == null || value.isEmpty) {
                   return "Будь ласка, введіть вірний номер";
                 }
                 return null;
@@ -64,7 +81,7 @@ class _VerificationNumberWidgetState extends State<VerificationNumberWidget> {
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(30),
                       color: AppColors.appMainColor),
-                  child:const Center(
+                  child: const Center(
                     child: Text(
                       'Верифікувати ',
                       style: TextStyle(
@@ -83,6 +100,12 @@ class _VerificationNumberWidgetState extends State<VerificationNumberWidget> {
   }
 
   void _sendOtp({required String phoneNumber, required BuildContext context}) {
+    final phoneNumberWithCode = "${_countryCode.dialCode}$phoneNumber";
+    context.read<PhoneAuthBloc>().add(
+          SendOtpToPhoneEvent(
+            phoneNumber: phoneNumberWithCode,
+          ),
+        );
     setState(() {
       widget.phoneNumberController.clear();
     });
