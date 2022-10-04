@@ -15,12 +15,13 @@ class SplashProvider extends BaseProvider {
   Future init(BuildContext context) async {
     setNotifier(NotifierState.loading);
     Timer(
-      const Duration(seconds: 1),
-      () => auth.currentUser == null
-          ? Navigator.pushReplacement(context,
-          MaterialPageRoute(builder: (context) => const LoginScreen()))
-          : Navigator.pushReplacement(
-    context, MaterialPageRoute(builder: (context) => const MainMenuScreen()))
-    );
+        const Duration(seconds: 1),
+        () => auth.currentUser == null
+            ? Navigator.pushReplacement(context,
+                MaterialPageRoute(builder: (context) => const LoginScreen()))
+            : Navigator.pushReplacement(
+                context,
+                MaterialPageRoute(
+                    builder: (context) => const MainMenuScreen())));
   }
 }

@@ -4,6 +4,7 @@ import 'package:copa_example/resources/app_images.dart';
 import 'package:copa_example/src/domain/models/user_model.dart';
 import 'package:copa_example/theme/app_colors.dart';
 import 'package:copa_example/ui/widgets/custom_text_form_feild/custom_text_form_field.dart';
+import 'package:copa_example/ui/widgets/verification_number/verification_number_widget.dart';
 
 import 'package:flutter/material.dart';
 
@@ -54,7 +55,7 @@ class _DataFormScreenState extends State<DataFormScreen> {
               return null;
             },
           ),
-          SizedBox(height: 20.0),
+          const SizedBox(height: 20.0),
           CustomTextFormField(
             controller: controllerLastName,
             labelText: 'Прізвище',
@@ -65,7 +66,7 @@ class _DataFormScreenState extends State<DataFormScreen> {
               return null;
             },
           ),
-          SizedBox(height: 20.0),
+         const  SizedBox(height: 20.0),
           CustomTextFormField(
             controller: controllerSity,
             labelText: 'Місто',
@@ -76,7 +77,7 @@ class _DataFormScreenState extends State<DataFormScreen> {
               return null;
             },
           ),
-          SizedBox(height: 100.0),
+        const  SizedBox(height: 100.0),
           ElevatedButton(
             style: ElevatedButton.styleFrom(
               primary: AppColors.appMainColor,
@@ -93,7 +94,7 @@ class _DataFormScreenState extends State<DataFormScreen> {
                 lastName: controllerLastName.text,
                 sity: controllerSity.text,
               );
-         
+
               AuthRepositoryImpl().createUser(user);
               //createUser(user);
             },
@@ -106,7 +107,4 @@ class _DataFormScreenState extends State<DataFormScreen> {
       ),
     );
   }
-
 }
-
-

@@ -14,4 +14,6 @@ abstract class AppColors {
   static const Color priceColor = Color(0xFFFFD600);
   static const Color filterColor = Color(0xFF4E4E53);
   static const Color materialColor = Color(0xFF9A9A9A);
+  static const Color tabBarColor = Color(0xFF4B4B4B);
+  static const Color transparent = Color(0x00000000);
 }

@@ -1,18 +1,19 @@
-import 'package:copa_example/ui/screens/verification_number/verification_number_screen.dart';
-import 'package:copa_example/ui/widgets/verification_number/verification_number_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:get/get_core/get_core.dart';
 
 class RegisterButtonWidget extends StatelessWidget {
   final String imageButton;
   final Color colorButton;
-  final  routePath;
+  final VoidCallback onPressed;
+  // final routePath;
 
   const RegisterButtonWidget({
     Key? key,
     required this.imageButton,
     required this.colorButton,
-     this.routePath,
+    required this.onPressed,
+    // this.routePath,
   }) : super(key: key);
 
   @override
@@ -24,33 +25,29 @@ class RegisterButtonWidget extends StatelessWidget {
         padding: const EdgeInsets.all(10),
         primary: colorButton,
       ),
-      child: Container(
-        width: 65,
-        height: 65,
-        child: Image.asset(imageButton),
-        decoration: BoxDecoration(
-          shape: BoxShape.circle,
-          boxShadow: <BoxShadow>[
-            BoxShadow(
-              color: colorButton,
-              blurRadius: 20,
-              spreadRadius: 10,
-            ),
-          ],
+      child: ConstrainedBox(
+        constraints: const BoxConstraints(minHeight: 65, minWidth: 65),
+        child: Container(
+          decoration: BoxDecoration(
+            shape: BoxShape.circle,
+            boxShadow: <BoxShadow>[
+              BoxShadow(
+                color: colorButton,
+                blurRadius: 20,
+                spreadRadius: 10,
+              ),
+            ],
+          ),
+          child: Image.asset(imageButton),
         ),
       ),
-      onPressed: () => Get.toNamed(routePath)
-      // Navigator.of(context).pushNamed(routePath)
+      //Get.toNamed(routePath),
+      // Navigator.of(context).pushNamed(routePath))
+      // '/verification_number_screen'
+      onPressed: onPressed,
+      // _authenticateWithGoogle(context);
+      // Navigator.of(context).pushNamed('/verification_number_screen');
+      // Get.toNamed('/verification_number_screen');
     );
   }
 }
-
-// routePath(route) {
-//   Navigator.of(context).pushNamed(route);
-// }
-// Navigator.pushReplacement(context, MaterialPageRoute(builder: context => routePath),),
-
-// Navigator.push(
-//     context,
-//     MaterialPageRoute(builder: (context) =>  routePath),
-//   ),

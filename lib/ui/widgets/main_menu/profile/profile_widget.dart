@@ -14,43 +14,30 @@ class _ProfileWidgetState extends State<ProfileWidget> {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        Row(children: [
-          Padding(
-            padding: const EdgeInsets.only(left: 16, right: 16, top: 50, bottom: 16),
-            child: Container(
-              child: Image.asset(
-                AppImages.profileImg,
-              ),
-              decoration: const BoxDecoration(
-                shape: BoxShape.circle,
+        Row(
+          children: [
+            Padding(
+              padding: const EdgeInsets.only(
+                  left: 16, right: 16, top: 50, bottom: 16),
+              child: Container(
+                decoration: const BoxDecoration(
+                  shape: BoxShape.circle,
+                ),
+                child: Image.asset(
+                  AppImages.profileImg,
+                ),
               ),
             ),
-          ),
-          Text(
-            'Angela Mayer',
-            style: TextStyle(
-              fontSize: 22.0,
-              fontWeight: FontWeight.bold,
-              color: Colors.white,
+            const Text(
+              'Angela Mayer',
+              style: TextStyle(
+                fontSize: 22.0,
+                fontWeight: FontWeight.bold,
+                color: Colors.white,
+              ),
             ),
-          ),
-        ]),
-       
-              // Expanded(
-              //   flex: 2,
-              //   child: Padding(
-              //     padding: const EdgeInsets.all(16.0),
-              //     child: Container(
-              //       alignment: Alignment.bottomRight,
-              //       color: AppColors.appMainColor,
-              //       decoration: const BoxDecoration(
-              //         shape: BoxShape.circle,
-              //         color: AppColors.appMainColor,
-              //       ),
-              //     ),
-              //   ),
-              // ),
-
+          ],
+        ),
         const Padding(
           padding: EdgeInsets.symmetric(horizontal: 30, vertical: 15),
           child: TextField(
@@ -75,7 +62,7 @@ class _ProfileWidgetState extends State<ProfileWidget> {
         ),
         const Padding(
           padding: EdgeInsets.symmetric(horizontal: 30, vertical: 15),
-          child:  TextField(
+          child: TextField(
             cursorColor: Colors.white,
             style: TextStyle(
               color: AppColors.white,
@@ -114,7 +101,7 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                   color: AppColors.appMainColor),
               child: const Center(
                 child: Text(
-                  'Верифікувати ',
+                  'Вийти',
                   style: TextStyle(
                     color: AppColors.white,
                     fontSize: 16,

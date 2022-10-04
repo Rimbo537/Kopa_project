@@ -9,12 +9,10 @@ part 'phone_auth_event.dart';
 part 'phone_auth_state.dart';
 
 class PhoneAuthBloc extends Bloc<PhoneAuthEvent, PhoneAuthState> {
-  final PhoneAuthRepository phoneAuthRepository = PhoneAuthRepository();
+  final PhoneAuthRepository phoneAuthRepository;
   final auth = FirebaseAuth.instance;
- 
 
-  PhoneAuthBloc()
-      : super(PhoneAuthInitial()) {
+  PhoneAuthBloc({required  this.phoneAuthRepository}) : super(PhoneAuthInitial()) {
     // When user clicks on send otp button then this event will be fired
     on<SendOtpToPhoneEvent>(_onSendOtp);
 
@@ -41,16 +39,24 @@ class PhoneAuthBloc extends Bloc<PhoneAuthEvent, PhoneAuthState> {
       await phoneAuthRepository.verifyPhone(
         phoneNumber: event.phoneNumber,
         verificationCompleted: (PhoneAuthCredential credential) async {
-          // On [verificationComplete], we will get the credential from the firebase  and will send it to the [OnPhoneAuthVerificationCompleteEvent] event to be handled by the bloc and then will emit the [PhoneAuthVerified] state after successful login
+          // On [verificationComplete], we will get the credential
+          // from the firebase  and will send it to the [OnPhoneAuthVerificationCompleteEvent] event
+          // to be handled by the bloc and then will emit the [PhoneAuthVerified] state after successful login
           add(OnPhoneAuthVerificationCompleteEvent(credential: credential));
         },
         codeSent: (String verificationId, int? resendToken) {
-          // On [codeSent], we will get the verificationId and the resendToken from the firebase and will send it to the [OnPhoneOtpSent] event to be handled by the bloc and then will emit the [OnPhoneAuthVerificationCompleteEvent] event after receiving the code from the user's phone
+          // On [codeSent], we will get the verificationId and the resendToken
+          // from the firebase and will send it to the [OnPhoneOtpSent] event
+          // to be handled by the bloc and then will emit the [OnPhoneAuthVerificationCompleteEvent] event
+          // after receiving the code from the user's phone
           add(OnPhoneOtpSent(
               verificationId: verificationId, token: resendToken));
         },
         verificationFailed: (FirebaseAuthException e) {
-          // On [verificationFailed], we will get the exception from the firebase and will send it to the [OnPhoneAuthErrorEvent] event to be handled by the bloc and then will emit the [PhoneAuthError] state in order to display the error to the user's screen
+          // On [verificationFailed], we will get the exception from the firebase
+          // and will send it to the [OnPhoneAuthErrorEvent] event to be handled
+          // by the bloc and then will emit the [PhoneAuthError] state in order to
+          // display the error to the user's screen
           add(OnPhoneAuthErrorEvent(error: e.code));
         },
         codeAutoRetrievalTimeout: (String verificationId) {},
@@ -64,7 +70,10 @@ class PhoneAuthBloc extends Bloc<PhoneAuthEvent, PhoneAuthState> {
       VerifySentOtpEvent event, Emitter<PhoneAuthState> emit) async {
     try {
       emit(PhoneAuthInitial());
-      // After receiving the otp, we will verify the otp and then will create a credential from the otp and verificationId and then will send it to the [OnPhoneAuthVerificationCompleteEvent] event to be handled by the bloc and then will emit the [PhoneAuthVerified] state after successful login
+      // After receiving the otp, we will verify the otp and then will
+      // create a credential from the otp and verificationId and then
+      // will send it to the [OnPhoneAuthVerificationCompleteEvent] event to be handled by the bloc
+      // and then will emit the [PhoneAuthVerified] state after successful login
       PhoneAuthCredential credential = PhoneAuthProvider.credential(
         verificationId: event.verificationId,
         smsCode: event.otpCode,
@@ -76,21 +85,21 @@ class PhoneAuthBloc extends Bloc<PhoneAuthEvent, PhoneAuthState> {
   }
 
   FutureOr<void> _loginWithCredential(
-    OnPhoneAuthVerificationCompleteEvent event,
-    Emitter<PhoneAuthState> emit) async {
-  // After receiving the credential from the event, we will login with the credential and then will emit the [PhoneAuthVerified] state after successful login
-  try {
-    await auth.signInWithCredential(event.credential).then((user) {
-      if (user.user != null) {
-        emit(PhoneAuthVerified());
-      }
-    });
-  } on FirebaseAuthException catch (e) {
-    emit(PhoneAuthError(error: e.code));
-  } catch (e) {
-    emit(PhoneAuthError(error: e.toString()));
+      OnPhoneAuthVerificationCompleteEvent event,
+      Emitter<PhoneAuthState> emit) async {
+    // After receiving the credential from the event, we will login
+    // with the credential and then will emit the [PhoneAuthVerified] state
+    // after successful login
+    try {
+      await auth.signInWithCredential(event.credential).then((user) {
+        if (user.user != null) {
+          emit(PhoneAuthVerified());
+        }
+      });
+    } on FirebaseAuthException catch (e) {
+      emit(PhoneAuthError(error: e.code));
+    } catch (e) {
+      emit(PhoneAuthError(error: e.toString()));
+    }
   }
-}
-
-
 }

@@ -1,10 +1,7 @@
 import 'package:copa_example/core/bloc/phone_auth/phone_auth_bloc.dart';
-import 'package:copa_example/core/bloc/widget_state_bloc.dart';
-import 'package:copa_example/core/data/services/firebase_auth/auth_phone.dart';
 import 'package:copa_example/theme/app_colors.dart';
-import 'package:copa_example/ui/screens/verification_number/verification_number_screen.dart';
 import 'package:copa_example/ui/widgets/custom_text_form_feild/custom_text_form_field.dart';
-import 'package:country_code_picker/country_code.dart';
+import 'package:copa_example/ui/widgets/main_button/main_button.dart';
 import 'package:country_code_picker/country_code_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -31,8 +28,9 @@ class _VerificationNumberWidgetState extends State<VerificationNumberWidget> {
         child: Column(
           children: [
             CustomTextFormField(
+              controller: widget.phoneNumberController,
               prefixIcon: CountryCodePicker(
-                textStyle: TextStyle(color: Colors.white),
+                textStyle: const TextStyle(color: Colors.white),
                 onChanged: (CountryCode countryCode) {
                   setState(
                     () {
@@ -45,7 +43,6 @@ class _VerificationNumberWidgetState extends State<VerificationNumberWidget> {
                 showOnlyCountryWhenClosed: false,
                 alignLeft: false,
               ),
-              controller: widget.phoneNumberController,
               labelText: 'Номер телефону',
               validator: (value) {
                 if (value == null || value.isEmpty) {
@@ -58,6 +55,7 @@ class _VerificationNumberWidgetState extends State<VerificationNumberWidget> {
 
             ///Button
             ///
+
             Padding(
               padding: const EdgeInsets.only(
                 left: 30,
@@ -65,8 +63,8 @@ class _VerificationNumberWidgetState extends State<VerificationNumberWidget> {
                 top: 30,
                 bottom: 30,
               ),
-              child: GestureDetector(
-                onTap: () {
+              child: ElevatedButton(
+                onPressed: () {
                   if (_phoneNumberFormKey.currentState!.validate()) {
                     _sendOtp(
                         phoneNumber: widget.phoneNumberController.text,
@@ -76,22 +74,51 @@ class _VerificationNumberWidgetState extends State<VerificationNumberWidget> {
                     // );
                   }
                 },
-                child: Container(
-                  height: 48,
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(30),
-                      color: AppColors.appMainColor),
-                  child: const Center(
-                    child: Text(
-                      'Верифікувати ',
-                      style: TextStyle(
-                        color: AppColors.white,
-                        fontSize: 16,
-                      ),
+                style: ButtonStyle(
+                  shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                    RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(30.0),
+                      side: const BorderSide(color: AppColors.appMainColor),
+                    ),
+                  ),
+                ),
+                child: const Center(
+                  child: Text(
+                    'Верифікувати ',
+                    style: TextStyle(
+                      color: AppColors.white,
+                      fontSize: 16,
                     ),
                   ),
                 ),
               ),
+              // child: GestureDetector(
+              //   onTap: () {
+              //     if (_phoneNumberFormKey.currentState!.validate()) {
+              //       _sendOtp(
+              //           phoneNumber: widget.phoneNumberController.text,
+              //           context: context);
+              //       // _bloc.add(
+              //       //   VerificationNumberEvent(),
+              //       // );
+              //     }
+              //   },
+              //   child: Container(
+              //     height: 48,
+              //     decoration: BoxDecoration(
+              //         borderRadius: BorderRadius.circular(30),
+              //         color: AppColors.appMainColor),
+              //     child: const Center(
+              //       child: Text(
+              //         'Верифікувати ',
+              //         style: TextStyle(
+              //           color: AppColors.white,
+              //           fontSize: 16,
+              //         ),
+              //       ),
+              //     ),
+              //   ),
+              // ),
             ),
           ],
         ),

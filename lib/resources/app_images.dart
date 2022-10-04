@@ -8,4 +8,5 @@ class AppImages {
   static const String sneakerCardImg = 'assets/images/sneaker_card.png';
   static const String backgroundMainImg = 'assets/images/background_main_image.png';
   static const String profileImg = 'assets/images/profile.png';
+  static const String sizeSneakerImg = 'assets/images/sneaker_size.png';
 }

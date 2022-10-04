@@ -41,24 +41,35 @@ class _SplashScreenState extends State<SplashScreen> {
     // });
   }
 
+  @override
+  Widget build(BuildContext context) {
+    return Provider<SplashProvider>(
+        create: (_) => SplashProvider(),
+        builder: (context, child) {
+          return Scaffold(
+              backgroundColor: AppColors.backgroudColor,
+              body: Center(
+                child: Image.asset(
+                  AppImages.sneakerImg,
+                ),
+              ));
+        });
+  }
+  // @override
+  // Widget build(BuildContext context) {
+  //   return Scaffold(
+  //     backgroundColor: AppColors.backgroudColor,
+  //     body: Center(
+  //       child: Image.asset(
+  //         AppImages.sneakerImg,
+  //       ),
+  //     ),
+  //   );
+  // }
+}
 
 
-@override
-Widget build(BuildContext context) {
-  return Provider<SplashProvider>(
-    create:(_) => SplashProvider(),
-    builder: (context, child) {
-      return Container(
-      color: AppColors.backgroudColor,
-      child: Image.asset(
-        AppImages.sneakerImg,
-      ),
-      width: 373,
-      height: 436,
-    );
-    },
 
     
-  );
-}
-}
+//   );
+// }

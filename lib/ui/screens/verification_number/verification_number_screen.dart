@@ -1,5 +1,7 @@
 import 'package:copa_example/core/bloc/phone_auth/phone_auth_bloc.dart';
-import 'package:copa_example/core/bloc/widget_state_bloc.dart';
+import 'package:copa_example/data/repositories/auth/auth_repository_impl.dart';
+import 'package:copa_example/data/repositories/phone_auth/phone_auth_repository.dart';
+
 import 'package:copa_example/resources/app_images.dart';
 import 'package:copa_example/theme/app_colors.dart';
 import 'package:copa_example/ui/screens/data_form/data_form_screen.dart';
@@ -18,15 +20,8 @@ class VerificationNumberScreen extends StatefulWidget {
 }
 
 class _VerificationNumberScreenState extends State<VerificationNumberScreen> {
-  late TextEditingController _phoneNumberController = TextEditingController();
-  late TextEditingController _codeController = TextEditingController();
-
-  // @override
-  // void initState() {
-  //   _phoneNumberController = TextEditingController();
-  //   _codeController = TextEditingController();
-  //   super.initState();
-  // }
+  final TextEditingController _phoneNumberController = TextEditingController();
+  final TextEditingController _codeController = TextEditingController();
 
   @override
   void dispose() {
@@ -35,107 +30,188 @@ class _VerificationNumberScreenState extends State<VerificationNumberScreen> {
     super.dispose();
   }
 
-  // final _formKey = GlobalKey<FormState>();
-  // final List<Widget> _children = [];
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColors.backgroudColor,
-      body: BlocProvider(
-        create: (BuildContext context) {
-          return PhoneAuthBloc();
+      body: BlocListener<PhoneAuthBloc, PhoneAuthState>(
+        listener: (context, state) {
+          if (state is PhoneAuthCodeSentSuccess) {
+            Navigator.of(context).pushReplacement(
+              MaterialPageRoute(
+                builder: (_) => const DataFormScreen(),
+              ),
+            );
+          }
+          // If Phone Otp Verified. Send User to Home Screen
+          if (state is PhoneAuthVerified) {
+            Navigator.of(context).pushReplacement(
+              MaterialPageRoute(
+                builder: (_) => const MainMenuScreen(),
+              ),
+            );
+          }
+          // Show error message if any error occurs while verifying phone number and otp code
+          if (state is PhoneAuthError) {
+            ScaffoldMessenger.of(context).showSnackBar(
+              SnackBar(
+                content: Text(state.error),
+              ),
+            );
+          }
         },
-        child: BlocListener<PhoneAuthBloc, PhoneAuthState>(
-          listener: (context, state) {
-            if (state is PhoneAuthCodeSentSuccess) {
-              Navigator.of(context).pushReplacement(
-                MaterialPageRoute(
-                  builder: (_) => const DataFormScreen(),
-                ),
-              );
-            }
-            // If Phone Otp Verified. Send User to Home Screen
-            if (state is PhoneAuthVerified) {
-              Navigator.of(context).pushReplacement(
-                MaterialPageRoute(
-                  builder: (_) => const MainMenuScreen(),
-                ),
-              );
-            }
-            // Show error message if any error occurs while verifying phone number and otp code
-            if (state is PhoneAuthError) {
-              ScaffoldMessenger.of(context).showSnackBar(
-                SnackBar(
-                  content: Text(state.error),
-                ),
-              );
-            }
-          },
-          child: BlocBuilder<PhoneAuthBloc, PhoneAuthState>(
-            builder: (context, state) {
-              return ListView(
-                children: [
-                  // const SizedBox(height: 104),
-                  Padding(
-                    padding: const EdgeInsets.only(top: 70.0),
-                    child: Container(
-                      child: Image.asset(
-                        AppImages.sneakerImg,
-                      ),
+        child: BlocBuilder<PhoneAuthBloc, PhoneAuthState>(
+          builder: (context, state) {
+            return ListView(
+              children: [
+                // const SizedBox(height: 104),
+                Padding(
+                  padding: const EdgeInsets.only(top: 70.0),
+                  child: Container(
+                    child: Image.asset(
+                      AppImages.sneakerImg,
                     ),
                   ),
-                  Container(
-                    child: Stack(
-                      fit: StackFit.loose,
-                      alignment: AlignmentDirectional.center,
-                      children: [
-                        Image.asset(AppImages.ellipseImg),
-                        const Text(
-                          'Вхід',
-                          style: TextStyle(
-                            color: AppColors.white,
-                            fontSize: 28.0,
+                ),
+                Container(
+                  child: Stack(
+                    fit: StackFit.loose,
+                    alignment: AlignmentDirectional.center,
+                    children: [
+                      Image.asset(AppImages.ellipseImg),
+                      const Text(
+                        'Вхід',
+                        style: TextStyle(
+                          color: AppColors.white,
+                          fontSize: 28.0,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+
+                Padding(
+                  padding: const EdgeInsets.only(top: 32),
+                  child: BlocBuilder<PhoneAuthBloc, PhoneAuthState>(
+                    builder: (BuildContext context, state) {
+                      return Center(
+                        child: Padding(
+                          padding: const EdgeInsets.all(18.0),
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              // Here we are conditionally rendering the OtpWidget. When the user presses the Send OTP button we will update the PhoneNumberWidget with the OtpWidget. So that user can enter the OTP.
+                              if (state is! PhoneAuthCodeSentSuccess)
+                                VerificationNumberWidget(
+                                  phoneNumberController: _phoneNumberController,
+                                )
+                              else
+                                ConfirmNumberWidget(
+                                  codeController: _codeController,
+                                  verificationId: state.verificationId,
+                                ),
+                            ],
                           ),
                         ),
-                      ],
-                    ),
+                      );
+                    },
                   ),
-
-                  Padding(
-                    padding: const EdgeInsets.only(top: 32),
-                    child: BlocBuilder<PhoneAuthBloc, PhoneAuthState>(
-                      builder: (BuildContext context, state) {
-                        return Center(
-                          child: Padding(
-                            padding: const EdgeInsets.all(18.0),
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                // Here we are conditionally rendering the OtpWidget. When the user presses the Send OTP button we will update the PhoneNumberWidget with the OtpWidget. So that user can enter the OTP.
-                                if (state is! PhoneAuthCodeSentSuccess)
-                                  VerificationNumberWidget(
-                                    phoneNumberController:
-                                        _phoneNumberController,
-                                  )
-                                else
-                                  ConfirmNumberWidget(
-                                    codeController: _codeController,
-                                    verificationId: state.verificationId,
-                                  ),
-                              ],
-                            ),
-                          ),
-                        );
-                      },
-                    ),
-                  ),
-                ],
-              );
-            },
-          ),
+                ),
+              ],
+            );
+          },
         ),
       ),
     );
+//         child: BlocListener<PhoneAuthBloc, PhoneAuthState>(
+// BlocListener<PhoneAuthBloc, PhoneAuthState>(
+//         listener: (context, state) {
+//           if (state is PhoneAuthCodeSentSuccess) {
+//             Navigator.of(context).pushReplacement(
+//               MaterialPageRoute(
+//                 builder: (_) => const DataFormScreen(),
+//               ),
+//             );
+//           }
+//           // If Phone Otp Verified. Send User to Home Screen
+//           if (state is PhoneAuthVerified) {
+//             Navigator.of(context).pushReplacement(
+//               MaterialPageRoute(
+//                 builder: (_) => const MainMenuScreen(),
+//               ),
+//             );
+//           }
+//           // Show error message if any error occurs while verifying phone number and otp code
+//           if (state is PhoneAuthError) {
+//             ScaffoldMessenger.of(context).showSnackBar(
+//               SnackBar(
+//                 content: Text(state.error),
+//               ),
+//             );
+//           }
+//         },
+//         child: BlocBuilder<PhoneAuthBloc, PhoneAuthState>(
+//           builder: (context, state) {
+//             return ListView(
+//               children: [
+//                 // const SizedBox(height: 104),
+//                 Padding(
+//                   padding: const EdgeInsets.only(top: 70.0),
+//                   child: Container(
+//                     child: Image.asset(
+//                       AppImages.sneakerImg,
+//                     ),
+//                   ),
+//                 ),
+//                 Container(
+//                   child: Stack(
+//                     fit: StackFit.loose,
+//                     alignment: AlignmentDirectional.center,
+//                     children: [
+//                       Image.asset(AppImages.ellipseImg),
+//                       const Text(
+//                         'Вхід',
+//                         style: TextStyle(
+//                           color: AppColors.white,
+//                           fontSize: 28.0,
+//                         ),
+//                       ),
+//                     ],
+//                   ),
+//                 ),
+
+//                 Padding(
+//                   padding: const EdgeInsets.only(top: 32),
+//                   child: BlocBuilder<PhoneAuthBloc, PhoneAuthState>(
+//                     builder: (BuildContext context, state) {
+//                       return Center(
+//                         child: Padding(
+//                           padding: const EdgeInsets.all(18.0),
+//                           child: Column(
+//                             mainAxisAlignment: MainAxisAlignment.center,
+//                             children: [
+//                               // Here we are conditionally rendering the OtpWidget. When the user presses the Send OTP button we will update the PhoneNumberWidget with the OtpWidget. So that user can enter the OTP.
+//                               if (state is! PhoneAuthCodeSentSuccess)
+//                                 VerificationNumberWidget(
+//                                   phoneNumberController: _phoneNumberController,
+//                                 )
+//                               else
+//                                 ConfirmNumberWidget(
+//                                   codeController: _codeController,
+//                                   verificationId: state.verificationId,
+//                                 ),
+//                             ],
+//                           ),
+//                         ),
+//                       );
+//                     },
+//                   ),
+//                 ),
+//               ],
+//             );
+//           },
+//         ),
+//       ),
+//     );
   }
 }

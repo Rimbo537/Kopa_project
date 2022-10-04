@@ -3,6 +3,7 @@ import 'package:copa_example/resources/app_icons.dart';
 import 'package:copa_example/resources/app_images.dart';
 import 'package:copa_example/src/domain/models/user_model.dart';
 import 'package:copa_example/theme/app_colors.dart';
+import 'package:copa_example/ui/screens/create_product/create_product_creen.dart';
 import 'package:copa_example/ui/screens/main_menu/bottom_notifier.dart';
 import 'package:copa_example/ui/widgets/main_menu/edit_add/edit_add_button_widget.dart';
 import 'package:copa_example/ui/widgets/main_menu/favorite/favorite_announcement_widget.dart';
@@ -27,7 +28,7 @@ class _MainMenuScreenState extends State<MainMenuScreen> {
   static const List<Widget> _widgetOptions = <Widget>[
     MainMenuWidget(),
     ProductAnnouncementWidget(),
-    EditAddButtonWidget(),
+    CreateProductScreen(),
     FavoriteAnnouncementWidget(),
     ProfileWidget(),
   ];
