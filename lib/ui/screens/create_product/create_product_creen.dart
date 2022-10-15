@@ -1,10 +1,10 @@
+import 'package:copa_example/core/data/ui/widgets/base_stateful_widget.dart';
 import 'package:copa_example/resources/app_images.dart';
 import 'package:copa_example/theme/app_colors.dart';
+import 'package:copa_example/ui/widgets/button_back/button_back_widget.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/foundation/key.dart';
-import 'package:flutter/src/widgets/framework.dart';
 
-class CreateProductScreen extends StatefulWidget {
+class CreateProductScreen extends BaseStatefulWidget {
   const CreateProductScreen({Key? key}) : super(key: key);
 
   @override
@@ -43,7 +43,7 @@ class _CreateProductScreenState extends State<CreateProductScreen> {
       backgroundColor: AppColors.backgroudColor,
       appBar: AppBar(
           backgroundColor: AppColors.transparent,
-          title: const Icon(Icons.arrow_back_ios),
+          title: const ButtonBackWidget(),
           actions: [
             TextButton(
               onPressed: () {},
@@ -146,7 +146,7 @@ class _CreateProductScreenState extends State<CreateProductScreen> {
                         padding: const EdgeInsets.only(right: 8.0),
                         child: ConstrainedBox(
                           constraints:
-                             const BoxConstraints(minHeight: 75, minWidth: 75),
+                              const BoxConstraints(minHeight: 75, minWidth: 75),
                           child: Container(
                             decoration: const BoxDecoration(
                               color: Colors.white,
@@ -172,7 +172,7 @@ class _CreateProductScreenState extends State<CreateProductScreen> {
                         padding: const EdgeInsets.only(right: 8.0),
                         child: ConstrainedBox(
                           constraints:
-                            const  BoxConstraints(minHeight: 75, minWidth: 75),
+                              const BoxConstraints(minHeight: 75, minWidth: 75),
                           child: Container(
                             decoration: const BoxDecoration(
                               color: Colors.white,
@@ -208,7 +208,7 @@ class _CreateProductScreenState extends State<CreateProductScreen> {
                         padding: const EdgeInsets.only(right: 8.0),
                         child: ConstrainedBox(
                           constraints:
-                           const   BoxConstraints(minHeight: 75, minWidth: 75),
+                              const BoxConstraints(minHeight: 75, minWidth: 75),
                           child: Container(
                             decoration: const BoxDecoration(
                               color: Colors.white,

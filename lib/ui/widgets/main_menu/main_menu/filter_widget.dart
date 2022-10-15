@@ -1,9 +1,8 @@
+import 'package:copa_example/core/data/ui/widgets/base_stateful_widget.dart';
 import 'package:copa_example/theme/app_colors.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/foundation/key.dart';
-import 'package:flutter/src/widgets/framework.dart';
 
-class FilterWidget extends StatefulWidget {
+class FilterWidget extends BaseStatefulWidget {
   const FilterWidget({Key? key}) : super(key: key);
 
   @override
@@ -13,11 +12,26 @@ class FilterWidget extends StatefulWidget {
 class _FilterWidgetState extends State<FilterWidget> {
   final List<String> _nameSneakers = ['Sneaker 1', 'Sneaker 2', 'Sneaker 3'];
   String? _selectedSneaker;
-  List<String> _materialSneaker = ['Шкіра', 'Штучна шкіра', 'Натуральна шкіра'];
+  final List<String> _materialSneaker = [
+    'Шкіра',
+    'Штучна шкіра',
+    'Натуральна шкіра'
+  ];
   String? _selectedMaterial;
-  List<int> _sizeSneaker = [40, 41, 42, 43, 44, 45];
+  final List<int> _sizeSneaker = [40, 41, 42, 43, 44, 45];
   String? _selectedSize;
-  List<int> _priceSneaker = [100, 200, 300, 400, 500, 600, 700, 800, 900, 1000];
+  final List<int> _priceSneaker = [
+    100,
+    200,
+    300,
+    400,
+    500,
+    600,
+    700,
+    800,
+    900,
+    1000
+  ];
   String? _selectedPrice;
 
   // add lists to other DropdownButtonFormField
@@ -25,7 +39,7 @@ class _FilterWidgetState extends State<FilterWidget> {
   @override
   Widget build(BuildContext context) {
     return IconButton(
-      icon: Icon(Icons.filter_alt),
+      icon: const Icon(Icons.filter_alt),
       onPressed: () {
         showModalBottomSheet(
           backgroundColor: AppColors.filterColor,
@@ -57,11 +71,11 @@ class _FilterWidgetState extends State<FilterWidget> {
                         items: _nameSneakers.map(
                           (name) {
                             return DropdownMenuItem(
+                              value: name,
                               child: Text(
                                 name,
-                                style: TextStyle(color: Colors.white),
+                                style: const TextStyle(color: Colors.white),
                               ),
-                              value: name,
                             );
                           },
                         ).toList(),
@@ -73,7 +87,7 @@ class _FilterWidgetState extends State<FilterWidget> {
                       ),
 
                       ///
-                      SizedBox(height: 20),
+                      const SizedBox(height: 20),
 
                       /// Матеріал
                       Row(
@@ -94,11 +108,11 @@ class _FilterWidgetState extends State<FilterWidget> {
                         items: _materialSneaker.map(
                           (name) {
                             return DropdownMenuItem(
-                              child: Text(
-                                '${name}',
-                                style: TextStyle(color: Colors.white),
-                              ),
                               value: name,
+                              child: Text(
+                                name,
+                                style: const TextStyle(color: Colors.white),
+                              ),
                             );
                           },
                         ).toList(),
@@ -110,7 +124,7 @@ class _FilterWidgetState extends State<FilterWidget> {
                       ),
 
                       ///
-                      SizedBox(height: 20),
+                      const SizedBox(height: 20),
 
                       /// Розмір
                       Row(
@@ -140,11 +154,12 @@ class _FilterWidgetState extends State<FilterWidget> {
                                 items: _sizeSneaker.map(
                                   (name) {
                                     return DropdownMenuItem(
-                                      child: Text(
-                                        '${name}',
-                                        style: TextStyle(color: Colors.white),
-                                      ),
                                       value: name,
+                                      child: Text(
+                                        '$name',
+                                        style: const TextStyle(
+                                            color: Colors.white),
+                                      ),
                                     );
                                   },
                                 ).toList(),
@@ -166,11 +181,12 @@ class _FilterWidgetState extends State<FilterWidget> {
                                 items: _sizeSneaker.map(
                                   (name) {
                                     return DropdownMenuItem(
-                                      child: Text(
-                                        '${name}',
-                                        style: TextStyle(color: Colors.white),
-                                      ),
                                       value: name,
+                                      child: Text(
+                                        '$name',
+                                        style: const TextStyle(
+                                            color: Colors.white),
+                                      ),
                                     );
                                   },
                                 ).toList(),
@@ -182,7 +198,7 @@ class _FilterWidgetState extends State<FilterWidget> {
                               ),
                             ),
                           ),
-                          Expanded(
+                          const Expanded(
                             flex: 3,
                             child: Padding(
                               padding: EdgeInsets.symmetric(horizontal: 8.0),
@@ -192,7 +208,7 @@ class _FilterWidgetState extends State<FilterWidget> {
                       ),
 
                       ///
-                      SizedBox(height: 20),
+                      const SizedBox(height: 20),
 
                       /// Ціна
                       Row(
@@ -222,11 +238,12 @@ class _FilterWidgetState extends State<FilterWidget> {
                                 items: _priceSneaker.map(
                                   (name) {
                                     return DropdownMenuItem(
-                                      child: Text(
-                                        '${name}',
-                                        style: TextStyle(color: Colors.white),
-                                      ),
                                       value: name,
+                                      child: Text(
+                                        '$name',
+                                        style: const TextStyle(
+                                            color: Colors.white),
+                                      ),
                                     );
                                   },
                                 ).toList(),
@@ -248,11 +265,12 @@ class _FilterWidgetState extends State<FilterWidget> {
                                 items: _priceSneaker.map(
                                   (name) {
                                     return DropdownMenuItem(
-                                      child: Text(
-                                        '${name}',
-                                        style: TextStyle(color: Colors.white),
-                                      ),
                                       value: name,
+                                      child: Text(
+                                        '$name',
+                                        style: const TextStyle(
+                                            color: Colors.white),
+                                      ),
                                     );
                                   },
                                 ).toList(),
@@ -264,7 +282,7 @@ class _FilterWidgetState extends State<FilterWidget> {
                               ),
                             ),
                           ),
-                          Expanded(
+                          const Expanded(
                             flex: 3,
                             child: Padding(
                               padding: EdgeInsets.all(16.0),
@@ -272,15 +290,16 @@ class _FilterWidgetState extends State<FilterWidget> {
                           ),
                         ],
                       ),
+
                       ///
-                      SizedBox(height: 20),
+                      const SizedBox(height: 20),
 
                       Row(
                         mainAxisAlignment: MainAxisAlignment.end,
                         children: [
                           TextButton(
                             onPressed: () {},
-                            child: Text(
+                            child: const Text(
                               'СКИНУТИ',
                               style: TextStyle(
                                 color: AppColors.appMainColor,
@@ -289,7 +308,7 @@ class _FilterWidgetState extends State<FilterWidget> {
                           ),
                           TextButton(
                             onPressed: () {},
-                            child: Text(
+                            child: const Text(
                               'ЗАСТОСУВАТИ',
                               style: TextStyle(
                                 color: AppColors.appMainColor,

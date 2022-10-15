@@ -24,4 +24,5 @@ class UserRepositoryImpl extends UserRepository {
   Future<void> updateUser(UserModel user) async {
     firestoreUserData.doc(FirebaseAuth.instance.currentUser!.uid).set(user.toJson());
   }
+  
 }

@@ -1,8 +1,9 @@
+import 'package:copa_example/core/data/ui/widgets/base_stateful_widget.dart';
 import 'package:copa_example/resources/app_images.dart';
 import 'package:copa_example/theme/app_colors.dart';
 import 'package:flutter/material.dart';
 
-class ProfileWidget extends StatefulWidget {
+class ProfileWidget extends BaseStatefulWidget {
   const ProfileWidget({Key? key}) : super(key: key);
 
   @override
@@ -10,6 +11,9 @@ class ProfileWidget extends StatefulWidget {
 }
 
 class _ProfileWidgetState extends State<ProfileWidget> {
+  //final user = FirebaseAuth.instance.currentUser;
+  //final userMob = UserRepositoryImpl().getUserData();
+
   @override
   Widget build(BuildContext context) {
     return Column(

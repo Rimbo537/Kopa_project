@@ -1,9 +1,8 @@
+import 'package:copa_example/core/data/ui/widgets/base_stateful_widget.dart';
 import 'package:copa_example/theme/app_colors.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/foundation/key.dart';
-import 'package:flutter/src/widgets/framework.dart';
 
-class MainButton extends StatefulWidget {
+class MainButton extends BaseStatefulWidget {
   MainButton({Key? key, this.onTap, required this.textButton})
       : super(key: key);
 
@@ -38,7 +37,7 @@ class _MainButtonState extends State<MainButton> {
             child: Center(
               child: Text(
                 widget.textButton,
-                style: TextStyle(
+                style: const TextStyle(
                   color: AppColors.white,
                   fontSize: 16,
                 ),

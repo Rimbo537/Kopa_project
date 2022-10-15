@@ -1,23 +1,22 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:copa_example/core/data/ui/widgets/base_stateful_widget.dart';
 import 'package:copa_example/resources/app_icons.dart';
 import 'package:copa_example/resources/app_images.dart';
 import 'package:copa_example/src/domain/models/user_model.dart';
 import 'package:copa_example/theme/app_colors.dart';
 import 'package:copa_example/ui/screens/create_product/create_product_creen.dart';
 import 'package:copa_example/ui/screens/main_menu/bottom_notifier.dart';
-import 'package:copa_example/ui/widgets/main_menu/edit_add/edit_add_button_widget.dart';
 import 'package:copa_example/ui/widgets/main_menu/favorite/favorite_announcement_widget.dart';
 import 'package:copa_example/ui/widgets/main_menu/main_menu/main_menu_widget.dart';
 import 'package:copa_example/ui/widgets/main_menu/product/product_announcement_widget.dart';
 import 'package:copa_example/ui/widgets/main_menu/profile/profile_widget.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/foundation/key.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:get/get.dart';
 import 'package:provider/provider.dart';
 
-class MainMenuScreen extends StatefulWidget {
+class MainMenuScreen extends BaseStatefulWidget {
   const MainMenuScreen({Key? key}) : super(key: key);
 
   @override
@@ -80,18 +79,35 @@ class _MainMenuScreenState extends State<MainMenuScreen> {
                   label: '',
                 ),
                 BottomNavigationBarItem(
-                  icon: RotationTransition(
-                    turns: AlwaysStoppedAnimation(45 / 360),
-                    child: Container(
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(10),
-                        color: AppColors.appMainColor,
-                      ),
-                      child: SvgPicture.asset(
-                        AppIcons.addIcon,
+                  icon: ElevatedButton(
+                    onPressed: () {
+                      Get.toNamed('/create_product_screen');
+                    },
+                    child: RotationTransition(
+                      turns: const AlwaysStoppedAnimation(45 / 360),
+                      child: Container(
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(10),
+                          color: AppColors.appMainColor,
+                        ),
+                        child: SvgPicture.asset(
+                          AppIcons.addIcon,
+                        ),
                       ),
                     ),
                   ),
+                  // RotationTransition(
+                  //   turns: AlwaysStoppedAnimation(45 / 360),
+                  //   child: Container(
+                  //     decoration: BoxDecoration(
+                  //       borderRadius: BorderRadius.circular(10),
+                  //       color: AppColors.appMainColor,
+                  //     ),
+                  //     child: SvgPicture.asset(
+                  //       AppIcons.addIcon,
+                  //     ),
+                  //   ),
+                  // ),
                   label: '',
                 ),
                 BottomNavigationBarItem(
@@ -116,7 +132,6 @@ class _MainMenuScreenState extends State<MainMenuScreen> {
             ),
             body: Container(
               alignment: Alignment.center,
-              
               child: Center(
                 child: _widgetOptions[
                     Provider.of<BottomNotifier>(context).childIndex],

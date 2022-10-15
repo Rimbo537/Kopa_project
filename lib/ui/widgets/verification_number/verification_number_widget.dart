@@ -1,12 +1,12 @@
 import 'package:copa_example/core/bloc/phone_auth/phone_auth_bloc.dart';
+import 'package:copa_example/core/data/ui/widgets/base_stateful_widget.dart';
 import 'package:copa_example/theme/app_colors.dart';
 import 'package:copa_example/ui/widgets/custom_text_form_feild/custom_text_form_field.dart';
-import 'package:copa_example/ui/widgets/main_button/main_button.dart';
 import 'package:country_code_picker/country_code_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class VerificationNumberWidget extends StatefulWidget {
+class VerificationNumberWidget extends BaseStatefulWidget {
   VerificationNumberWidget({Key? key, required this.phoneNumberController})
       : super(key: key);
   TextEditingController phoneNumberController;

@@ -1,12 +1,13 @@
 import 'dart:async';
-import 'package:copa_example/core/data/providers/base_provider.dart';
 import 'package:copa_example/resources/app_images.dart';
 import 'package:copa_example/theme/app_colors.dart';
 import 'package:copa_example/ui/screens/splash/splash_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-class SplashScreen extends StatefulWidget {
+import '../../../core/data/ui/widgets/base_stateful_widget.dart';
+
+class SplashScreen extends BaseStatefulWidget {
   const SplashScreen({Key? key}) : super(key: key);
 
   @override
@@ -33,7 +34,7 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
     super.initState();
-    Timer(Duration(seconds: 1), () {
+    Timer(const Duration(seconds: 1), () {
       Navigator.of(context).pushReplacementNamed('/login_screen');
     });
     // WidgetsBinding.instance.addPostFrameCallback((_) {

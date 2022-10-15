@@ -1,8 +1,7 @@
+import 'package:copa_example/core/data/ui/widgets/base_stateful_widget.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/foundation/key.dart';
-import 'package:flutter/src/widgets/framework.dart';
 
-class FavoriteAnnouncementWidget extends StatefulWidget {
+class FavoriteAnnouncementWidget extends BaseStatefulWidget {
   const FavoriteAnnouncementWidget({Key? key}) : super(key: key);
 
   @override
@@ -14,12 +13,10 @@ class _FavoriteAnnouncementWidgetState
     extends State<FavoriteAnnouncementWidget> {
   @override
   Widget build(BuildContext context) {
-    return Center(
-        child: Container(
-      child: Text(
-        'Favorite Announcement Widget',
-        style: TextStyle(color: Colors.white),
-      ),
+    return const Center(
+        child: Text(
+      'Favorite Announcement Widget',
+      style: TextStyle(color: Colors.white),
     ));
   }
 }

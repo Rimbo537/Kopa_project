@@ -1,5 +1,4 @@
-import 'package:flutter/src/foundation/key.dart';
-import 'package:flutter/src/widgets/framework.dart';
+import 'package:flutter/material.dart';
 
 abstract class BaseStatelessWidget extends StatelessWidget {
   const BaseStatelessWidget({Key? key}) : super(key: key);

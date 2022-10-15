@@ -1,14 +1,12 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:copa_example/core/data/ui/widgets/base_stateful_widget.dart';
 import 'package:copa_example/data/repositories/auth/auth_repository_impl.dart';
 import 'package:copa_example/resources/app_images.dart';
 import 'package:copa_example/src/domain/models/user_model.dart';
 import 'package:copa_example/theme/app_colors.dart';
 import 'package:copa_example/ui/widgets/custom_text_form_feild/custom_text_form_field.dart';
-import 'package:copa_example/ui/widgets/verification_number/verification_number_widget.dart';
-
 import 'package:flutter/material.dart';
 
-class DataFormScreen extends StatefulWidget {
+class DataFormScreen extends BaseStatefulWidget {
   const DataFormScreen({Key? key}) : super(key: key);
 
   @override
@@ -66,7 +64,7 @@ class _DataFormScreenState extends State<DataFormScreen> {
               return null;
             },
           ),
-         const  SizedBox(height: 20.0),
+          const SizedBox(height: 20.0),
           CustomTextFormField(
             controller: controllerSity,
             labelText: 'Місто',
@@ -77,12 +75,12 @@ class _DataFormScreenState extends State<DataFormScreen> {
               return null;
             },
           ),
-        const  SizedBox(height: 100.0),
+          const SizedBox(height: 100.0),
           ElevatedButton(
             style: ElevatedButton.styleFrom(
               primary: AppColors.appMainColor,
-              minimumSize: Size(283, 48),
-              shape: RoundedRectangleBorder(
+              minimumSize: const Size(283, 48),
+              shape: const RoundedRectangleBorder(
                 borderRadius: BorderRadius.all(Radius.circular(30)),
               ),
             ),
@@ -98,7 +96,7 @@ class _DataFormScreenState extends State<DataFormScreen> {
               AuthRepositoryImpl().createUser(user);
               //createUser(user);
             },
-            child: Text(
+            child: const Text(
               'Готово',
               style: TextStyle(fontSize: 16),
             ),

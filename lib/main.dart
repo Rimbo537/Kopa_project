@@ -13,9 +13,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
-
-import 'data/repositories/auth/auth_repository.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -35,7 +32,8 @@ class MyApp extends StatelessWidget {
         providers: [
           BlocProvider(
             create: (context) => AuthBloc(
-              authRepository: RepositoryProvider.of<AuthRepositoryImpl>(context),
+              authRepository:
+                  RepositoryProvider.of<AuthRepositoryImpl>(context),
             ),
           ),
           BlocProvider(
@@ -46,7 +44,7 @@ class MyApp extends StatelessWidget {
         ],
         child: GetMaterialApp(
           title: 'Copa Example',
-          home: const LoginScreen(),
+          home: const SplashScreen(),
           // VerificationNumberScreen
           // MainMenuScreen
           // DataFormScreen

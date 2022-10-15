@@ -1,5 +1,4 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:copa_example/core/bloc/phone_auth/phone_auth_bloc.dart';
 import 'package:copa_example/data/repositories/auth/auth_repository.dart';
 import 'package:copa_example/src/domain/models/user_model.dart';
 import 'package:firebase_auth/firebase_auth.dart';

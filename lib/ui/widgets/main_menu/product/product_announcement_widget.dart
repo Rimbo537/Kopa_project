@@ -1,11 +1,10 @@
+import 'package:copa_example/core/data/ui/widgets/base_stateful_widget.dart';
 import 'package:copa_example/theme/app_colors.dart';
 import 'package:copa_example/ui/widgets/main_menu/product/user_archive/user_archive.dart';
 import 'package:copa_example/ui/widgets/main_menu/product/user_product/user_product.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/foundation/key.dart';
-import 'package:flutter/src/widgets/framework.dart';
 
-class ProductAnnouncementWidget extends StatefulWidget {
+class ProductAnnouncementWidget extends BaseStatefulWidget {
   const ProductAnnouncementWidget({Key? key}) : super(key: key);
 
   @override
@@ -41,7 +40,7 @@ class _ProductAnnouncementWidgetState extends State<ProductAnnouncementWidget> {
                     borderRadius: BorderRadius.circular(50),
                     color: AppColors.appMainColor,
                   ),
-                  tabs: [
+                  tabs: const [
                     Tab(
                       child: Text(
                         'Активні',
@@ -58,7 +57,7 @@ class _ProductAnnouncementWidgetState extends State<ProductAnnouncementWidget> {
             ),
           ),
         ),
-        body: TabBarView(children: [
+        body:const TabBarView(children: [
           UserProduct(),
           UserArchive(),
         ]),

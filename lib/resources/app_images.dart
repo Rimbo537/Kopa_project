@@ -9,4 +9,6 @@ class AppImages {
   static const String backgroundMainImg = 'assets/images/background_main_image.png';
   static const String profileImg = 'assets/images/profile.png';
   static const String sizeSneakerImg = 'assets/images/sneaker_size.png';
+  static const String photoAddImg = 'assets/images/photo_add.png';
+  static const String userSellerImg = 'assets/images/user_seller.png';
 }

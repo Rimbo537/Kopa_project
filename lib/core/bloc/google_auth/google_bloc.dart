@@ -1,5 +1,4 @@
 import 'package:copa_example/data/repositories/auth/auth_repository_impl.dart';
-import 'package:copa_example/data/repositories/phone_auth/phone_auth_repository.dart';
 import 'package:equatable/equatable.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';

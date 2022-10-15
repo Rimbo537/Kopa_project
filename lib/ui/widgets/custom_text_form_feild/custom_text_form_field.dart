@@ -1,7 +1,8 @@
+import 'package:copa_example/core/data/ui/widgets/base_stateless_widget.dart';
 import 'package:copa_example/theme/app_colors.dart';
 import 'package:flutter/material.dart';
 
-class CustomTextFormField extends StatelessWidget {
+class CustomTextFormField extends BaseStatelessWidget {
   final void Function(String)? onChanged;
   final String? labelText;
   final String? Function(String?)? validator;
@@ -33,7 +34,7 @@ class CustomTextFormField extends StatelessWidget {
         cursorColor: AppColors.white,
         decoration: InputDecoration(
           prefixIcon: prefixIcon,
-          contentPadding: EdgeInsets.fromLTRB(10, 0, 10, 0),
+          contentPadding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
           border: const OutlineInputBorder(),
           enabledBorder: const OutlineInputBorder(
             borderRadius: BorderRadius.all(

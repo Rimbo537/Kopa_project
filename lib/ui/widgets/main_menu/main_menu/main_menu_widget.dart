@@ -1,14 +1,9 @@
-import 'package:copa_example/theme/app_colors.dart';
-import 'package:copa_example/ui/widgets/main_menu/main_menu/card_widget.dart';
-import 'package:copa_example/ui/widgets/main_menu/main_menu/card_widget.dart';
+import 'package:copa_example/core/data/ui/widgets/base_stateful_widget.dart';
+import 'package:copa_example/ui/widgets/card/card_widget.dart';
 import 'package:copa_example/ui/widgets/main_menu/main_menu/filter_widget.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/foundation/key.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:get/get.dart';
 
-class MainMenuWidget extends StatefulWidget {
+class MainMenuWidget extends BaseStatefulWidget {
   const MainMenuWidget({Key? key}) : super(key: key);
 
   @override

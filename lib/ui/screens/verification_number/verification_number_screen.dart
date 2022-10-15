@@ -1,7 +1,5 @@
 import 'package:copa_example/core/bloc/phone_auth/phone_auth_bloc.dart';
-import 'package:copa_example/data/repositories/auth/auth_repository_impl.dart';
-import 'package:copa_example/data/repositories/phone_auth/phone_auth_repository.dart';
-
+import 'package:copa_example/core/data/ui/widgets/base_stateful_widget.dart';
 import 'package:copa_example/resources/app_images.dart';
 import 'package:copa_example/theme/app_colors.dart';
 import 'package:copa_example/ui/screens/data_form/data_form_screen.dart';
@@ -11,7 +9,7 @@ import 'package:copa_example/ui/widgets/verification_number/verification_number_
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class VerificationNumberScreen extends StatefulWidget {
+class VerificationNumberScreen extends BaseStatefulWidget {
   const VerificationNumberScreen({Key? key}) : super(key: key);
 
   @override
@@ -67,27 +65,23 @@ class _VerificationNumberScreenState extends State<VerificationNumberScreen> {
                 // const SizedBox(height: 104),
                 Padding(
                   padding: const EdgeInsets.only(top: 70.0),
-                  child: Container(
-                    child: Image.asset(
-                      AppImages.sneakerImg,
-                    ),
+                  child: Image.asset(
+                    AppImages.sneakerImg,
                   ),
                 ),
-                Container(
-                  child: Stack(
-                    fit: StackFit.loose,
-                    alignment: AlignmentDirectional.center,
-                    children: [
-                      Image.asset(AppImages.ellipseImg),
-                      const Text(
-                        'Вхід',
-                        style: TextStyle(
-                          color: AppColors.white,
-                          fontSize: 28.0,
-                        ),
+                Stack(
+                  fit: StackFit.loose,
+                  alignment: AlignmentDirectional.center,
+                  children: [
+                    Image.asset(AppImages.ellipseImg),
+                    const Text(
+                      'Вхід',
+                      style: TextStyle(
+                        color: AppColors.white,
+                        fontSize: 28.0,
                       ),
-                    ],
-                  ),
+                    ),
+                  ],
                 ),
 
                 Padding(

@@ -1,8 +1,7 @@
+import 'package:copa_example/core/data/ui/widgets/base_stateless_widget.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import 'package:get/get_core/get_core.dart';
 
-class RegisterButtonWidget extends StatelessWidget {
+class RegisterButtonWidget extends BaseStatelessWidget {
   final String imageButton;
   final Color colorButton;
   final VoidCallback onPressed;
@@ -25,6 +24,10 @@ class RegisterButtonWidget extends StatelessWidget {
         padding: const EdgeInsets.all(10),
         primary: colorButton,
       ),
+      //Get.toNamed(routePath),
+      // Navigator.of(context).pushNamed(routePath))
+      // '/verification_number_screen'
+      onPressed: onPressed,
       child: ConstrainedBox(
         constraints: const BoxConstraints(minHeight: 65, minWidth: 65),
         child: Container(
@@ -41,10 +44,6 @@ class RegisterButtonWidget extends StatelessWidget {
           child: Image.asset(imageButton),
         ),
       ),
-      //Get.toNamed(routePath),
-      // Navigator.of(context).pushNamed(routePath))
-      // '/verification_number_screen'
-      onPressed: onPressed,
       // _authenticateWithGoogle(context);
       // Navigator.of(context).pushNamed('/verification_number_screen');
       // Get.toNamed('/verification_number_screen');
